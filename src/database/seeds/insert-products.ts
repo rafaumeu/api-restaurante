@@ -1,0 +1,60 @@
+import { Knex } from "knex";
+
+export async function seed(knex: Knex): Promise<void> {
+    // Deletes ALL existing entries
+    await knex("products").del();
+
+    // Inserts seed entries
+    await knex("products").insert([
+        { name: "Bife com Fritas", price: 29.90 },
+        { name: "Feijoada Completa", price: 39.50 },
+        { name: "Lasanha de Frango", price: 27.90 },
+        { name: "Pizza de Calabresa", price: 32.00 },
+        { name: "Salada Caesar", price: 18.90 },
+        { name: "Moqueca de Peixe", price: 45.00 },
+        { name: "Escondidinho de Carne Seca", price: 34.50 },
+        { name: "Espaguete à Bolonhesa", price: 22.50 },
+        { name: "Frango à Parmegiana", price: 29.00 },
+        { name: "Tábua de Frios", price: 49.90 },
+        { name: "Filé de Tilápia Grelhado", price: 33.70 },
+        { name: "Sushi Combo", price: 54.90 },
+        { name: "Hambúrguer Artesanal", price: 24.90 },
+        { name: "Risoto de Camarão", price: 37.80 },
+        { name: "Torta de Frango com Catupiry", price: 19.00 },
+        { name: "Omelete de Queijo e Presunto", price: 12.50 },
+        { name: "Caldo Verde", price: 16.00 },
+        { name: "Carne de Panela com Batata", price: 27.90 },
+        { name: "Costelinha Barbecue", price: 41.90 },
+        { name: "Quiche de Alho Poró", price: 15.90 },
+        { name: "Bobó de Camarão", price: 47.50 },
+        { name: "Picanha na Chapa", price: 59.90 },
+        { name: "Strogonoff de Frango", price: 25.90 },
+        { name: "Sanduíche de Pernil", price: 20.00 },
+        { name: "Calabresa Acebolada", price: 22.00 },
+        { name: "Arroz Carreteiro", price: 30.00 },
+        { name: "Salada de Frutas", price: 10.00 },
+        { name: "Sopa de Cebola", price: 14.00 },
+        { name: "Coxinha de Frango", price: 5.50 },
+        { name: "Cuscuz Paulista", price: 17.00 },
+        { name: "Empadão de Palmito", price: 18.90 },
+        { name: "Bolinho de Bacalhau", price: 8.90 },
+        { name: "Pastel de Carne", price: 6.50 },
+        { name: "Yakissoba Tradicional", price: 28.90 },
+        { name: "Macarronada com Almôndegas", price: 23.00 },
+        { name: "Lanche de Mortadela", price: 15.00 },
+        { name: "Mousse de Maracujá", price: 8.00 },
+        { name: "Pão de Queijo Recheado", price: 4.00 },
+        { name: "Crepioca de Frango", price: 12.90 },
+        { name: "Polenta com Molho de Carne", price: 20.90 },
+        { name: "Kibe Frito", price: 5.00 },
+        { name: "Brigadeiro Gourmet", price: 3.50 },
+        { name: "Petit Gateau com Sorvete", price: 15.50 },
+        { name: "Panqueca de Carne Moída", price: 19.90 },
+        { name: "Frango Assado", price: 26.90 },
+        { name: "Bacalhau à Brás", price: 38.00 },
+        { name: "Camarão Empanado", price: 34.50 },
+        { name: "Nhoque ao Sugo", price: 24.00 },
+        { name: "Sashimi de Salmão", price: 48.90 },
+        { name: "Frango Grelhado com Legumes", price: 21.50 }        
+    ]);
+};
