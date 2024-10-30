@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "tsx --watch src/server.ts"
+    "dev": "tsx --watch src/server.ts",
+    "knex": "node --import tsx ./node_modules/knex/bin/cli.js"
   },
   "keywords": [],
   "author": "Rafael Dias Zendron",
@@ -11,7 +12,9 @@
   "description": "API para gerenciar pedidos das mesas de um restaurante.",
   "dependencies": {
     "@types/express": "4.17.21",
-    "express": "4.19.2"
+    "express": "4.19.2",
+    "knex": "3.1.0",
+    "sqlite3": "5.1.7"
   },
   "devDependencies": {
     "@types/node": "20.14.12",
