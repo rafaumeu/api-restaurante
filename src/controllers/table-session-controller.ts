@@ -13,7 +13,7 @@ class TableSessionsController {
 
       const { table_id } = bodySchema.parse(request.body)
 
-      const session = await knex<TableSessionsRepository>('table_sessions')
+      const session = await knex<TableSessionsRepository>('tables_sessions')
       .where({ table_id })
       .orderBy("opened_at", "desc")
       .first()
@@ -22,7 +22,7 @@ class TableSessionsController {
         throw new AppError('Table session already open', 400)
       }
      
-      await knex<TableSessionsRepository>('table_sessions').insert({table_id, opened_at: knex.fn.now()})
+      await knex<TableSessionsRepository>('tables_sessions').insert({table_id, opened_at: knex.fn.now()})
       return response.status(201).json()
     } catch (error) {
       next(error)
@@ -30,7 +30,7 @@ class TableSessionsController {
   }
   async index(request: Request, response: Response, next: NextFunction) {
     try {
-      const sessions = await knex<TableSessionsRepository>('table_sessions')
+      const sessions = await knex<TableSessionsRepository>('tables_sessions')
       .orderBy("closed_at")
       return response.json(sessions)
     } catch (error) {
@@ -45,7 +45,7 @@ class TableSessionsController {
       .transform((value) => Number(value))
       .refine((value) => !isNaN(value), { message: 'id must be a number' })
       .parse(request.params.id)
-      const sessions = await knex<TableSessionsRepository>('table_sessions')
+      const sessions = await knex<TableSessionsRepository>('tables_sessions')
       .where({id})
       .first()
 
@@ -56,7 +56,7 @@ class TableSessionsController {
       if(sessions.closed_at) {
         throw new AppError('Table session already closed', 400)
       }
-      await knex<TableSessionsRepository>('table_sessions').update({closed_at: knex.fn.now()}).where({id})
+      await knex<TableSessionsRepository>('tables_sessions').update({closed_at: knex.fn.now()}).where({id})
       return response.json()
     } catch (error) {
       next(error)
