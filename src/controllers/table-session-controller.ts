@@ -13,6 +13,14 @@ class TableSessionsController {
 
       const { table_id } = bodySchema.parse(request.body)
 
+      const tableExists = await knex<TableRepository>('tables')
+      .where({ id: table_id })
+      .first()
+
+      if (!tableExists) {
+        throw new AppError('Table not found', 404)
+      }
+      
       const session = await knex<TableSessionsRepository>('tables_sessions')
       .where({ table_id })
       .orderBy("opened_at", "desc")
