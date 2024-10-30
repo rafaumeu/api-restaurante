@@ -3,6 +3,12 @@ export default {
   connection: {
     filename: './src/database/database.db'
   },
+  pool: {
+    afterCreate: (conn: any, done: any) => {
+      conn.run('PRAGMA foreign_keys = ON')
+      done()
+    }
+  },
   migrations: {
     extensions: "ts",
     directory: './src/database/migrations'
