@@ -3,6 +3,7 @@ import { AppError } from '@/utils/AppError'
 import { Request, Response, NextFunction } from 'express'
 
 import {z} from 'zod'
+
 class TableSessionsController {
   async create(request: Request, response: Response, next: NextFunction) {
     try {
@@ -39,6 +40,20 @@ class TableSessionsController {
       next(error)
     }
   }
+
+  async update(request: Request, response: Response, next: NextFunction) {
+    try {
+      const id = z
+      .string()
+      .transform((value) => Number(value))
+      .refine((value) => !isNaN(value), { message: 'id must be a number' })
+      .parse(request.params.id)
+
+      return response.json()
+    } catch (error) {
+      next(error)
+    }
+  } 
 }
 
 export { TableSessionsController }
