@@ -42,6 +42,14 @@ class OrdersController {
       next(error)
     }
   }
+  async index(request: Request, response: Response, next: NextFunction) {
+    try {
+      const orders = await knex<OrderRepository>('orders').select()
+      return response.json(orders)
+    } catch (error) {
+      next(error)
+    }
+  }
 }
 
 
