@@ -8,5 +8,6 @@ const ordersController = new OrdersController();
 
 ordersRoutes.post("/", ordersController.create);
 ordersRoutes.get("/tables-sessions/:tables_sessions_id", ordersController.index);
+ordersRoutes.get("/tables-sessions/:tables_sessions_id/total", ordersController.show);
 
 export { ordersRoutes };
