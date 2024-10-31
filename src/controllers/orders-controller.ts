@@ -44,7 +44,23 @@ class OrdersController {
   }
   async index(request: Request, response: Response, next: NextFunction) {
     try {
-      const orders = await knex<OrderRepository>('orders').select()
+      const id = z
+      .string()
+      .transform((value) => Number(value))
+      .refine((value) => !isNaN(value), { message: 'id must be a number' })
+      .parse(request.params.tables_sessions_id); // Validação e transformação com Zod
+      
+      const orders = await knex<OrderRepository>('orders')
+      .where({ tables_sessions_id: id })
+      .join('products', 'orders.products_id', 'products.id')
+      .select(
+        "orders.id",
+         "orders.tables_sessions_id",
+         "orders.products_id",
+         "products.name",
+         "orders.price",
+         "orders.quantity"
+        )
       return response.json(orders)
     } catch (error) {
       next(error)
